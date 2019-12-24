@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="./favicon.ico">
+    <title>DT Blockchain Explorer</title>
+    <link href="https://libs.cdnjs.net/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="./css/sticky-footer-navbar.css.css" rel="stylesheet">
+
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <!-- <script src="https://libs.cdnjs.net/vue/2.6.10/vue.js"></script> -->
+    <script src="https://libs.cdnjs.net/axios/0.19.0-beta.1/axios.min.js"></script>
+    <script src="https://libs.cdnjs.net/jquery/3.4.1/jquery.min.js"></script>
+    <script src="common.js"></script>
+</head>
+
+<body>
+
+    <header>
+        <div class="headerpage"></div>
+        <script>$(".headerpage").load("header.html");</script>
+    </header>
+
+    <main role="main" class="container">
+        <h1 class="mt-5">Block</h1>
+        <div class="table-responsive">
+            <table class="table table-striped" id="app-block">
+                <thead>
+                    <tr>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="block in blocks">
+                        <td v-text="block[0]"></td>
+                        <td v-text="block[1]"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+
+        <h1 class="mt-5">Transactions</h1>
+        <div style="text-align: center" id="app-trans">
+            <div class="empty-state" v-if='isEmpty'>
+                <h2>No transactions</h2>
+                <p>There are no transactions found.</p>
+            </div>
+
+            <div class="table-responsive" v-else>
+                <table class="table table-striped" id="app-t">
+                    <thead>
+                        <tr>
+                            <th>Transaction ID</th>
+                            <!-- <th>Date</th> -->
+                            <th>Sender</th>
+                            <th>Recipient</th>
+                            <th>Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="tran in trans">
+                            <td>
+                                <a v-text="tran.id" v-bind:href="'transaction.html?tid='+tran.id"></a>
+                            </td>
+                            <!-- <td v-text="tran.date"></td> -->
+                            <td>
+                                <a v-text="tran.sender" v-bind:href="'address.html?address='+tran.sender + '&type=0&page=1'"></a>
+                            </td>
+                            <td>
+                                <a v-text="tran.recipient" v-bind:href="'address.html?address='+tran.recipient + '&type=0&page=1'"></a>
+                            </td>
+                            <td v-text="tran.amount"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+
+
+        <script src="block.js"></script>
+    </main>
+
+
+    <!-- <footer class="footer">
+    <div class="container">
+      <span class="text-muted">Place sticky footer content here.</span>
+    </div>
+  </footer> -->
+
+    <script src="https://libs.cdnjs.net/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+
+</html>

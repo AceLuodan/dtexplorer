@@ -1,0 +1,29 @@
+{
+    "name": "DTWallet",
+    "productName": "DT Wallet",
+    "version": "1.0.0",
+    "description": "Manage your DT finances in one App!",
+    "main": "./main.prod.js",
+    "author": {
+      "name": "DT Wallet Inc.",
+      "email": "info@dtexplorer.io",
+      "url": "https://dtexplorer.io/"
+    },
+    "scripts": {
+      "electron-rebuild": "node -r babel-register ../internals/scripts/ElectronRebuild.js",
+      "postinstall": "npm run electron-rebuild"
+    },
+    "license": "MIT",
+    "dependencies": {
+      "@ledgerhq/hw-transport": "^4.24.0",
+      "@ledgerhq/hw-transport-node-hid": "^4.24.0",
+      "babel-runtime": "^6.26.0",
+      "bip32": "^1.0.2",
+      "bip32-path": "^0.4.2"
+    },
+    "externals": {
+      "node-hid": "commonjs node-hid",
+      "usb": "commonjs usb"
+    }
+  }
+  

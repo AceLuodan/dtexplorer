@@ -1,0 +1,66 @@
+<div class="header">
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <a class="navbar-brand" href="index.html">DT Explorer</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
+            aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav mr-auto">
+                <!-- <li class="nav-item active">
+                          <a class="nav-link" href="/index.html">Home <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" href="blocks.html">Blocks </a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" href="transactions.html">Transactions</a>
+                        </li> -->
+                <li class="nav-item">
+                    <a class="nav-link" href="https://lsmasai.blob.core.windows.net/masai/w/DT%20Wallet%20Setup%201.0.0.rar">Download DT Wallet</a>
+                </li>
+            </ul>
+            <div class="form-inline mt-2 mt-md-0">
+                <input id="sid" onkeydown="onKeyDown(event)" class="form-control mr-sm-2" type="text"
+                    placeholder="Search address, block or transaction" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit" onclick="checkStr()">Search</button>
+            </dvi>
+        </div>
+    </nav>
+</div>
+
+<script>
+    function onKeyDown(event) {
+        var e = event || window.event || arguments.callee.caller.arguments[0];
+        if (e && e.keyCode == 27) { // 按 Esc
+            $('input')[0].value = "";
+        }
+        if (e && e.keyCode == 13) { // enter 键
+            checkStr();
+        }
+    }
+
+    function checkStr() {
+        let str = $("#sid").val();
+        if (str.length == 64) {
+            // txID or Hash
+            if (str[0] == '0' && str[1] == '0') {
+                window.location.href = 'hash.html?hash=' + str;
+            } else {
+                window.location.href = 'transaction.html?tid=' + str;
+            }
+        } else if (str.length == 34) {
+            // address
+            let svrAddress = do58Decode(str);
+            window.location.href = 'address.html?address=' + str;
+        } else {
+            let iHeight = parseInt(str);
+            if (iHeight) {
+                if (iHeight > 0) {
+                    window.location.href = 'block.html?height=' + iHeight;
+                }
+            }
+            $('input')[0].value = "";
+        }
+    }
+</script>

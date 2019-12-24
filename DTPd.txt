@@ -1,0 +1,86 @@
+服务器1：DT链出块节点服务器
+58.82.224.189
+154.211.127.244
+内网：192.168.1.33
+
+服务器2：服务器2：DT链浏览器
+202.60.236.159
+154.223.215.212
+内网：192.168.1.11
+
+服务器3：PC端钱包信息服务器   https://www.dtexplorer.io 域名指向这个服务器
+154.223.215.217
+154.211.161.12
+内网：192.168.1.12
+
+新增DT链服务器1 外网IP：
+154.206.61.198
+154.206.44.116
+内网IP ：192.168.1.24
+新增DT链服务器2 外网IP：
+154.206.44.184
+154.206.44.126
+root 端口 6588
+
+hy70neAndBWK
+
+usr/bin 
+/mongod -dbpath /home/service/mongodb/mongo/ -logpath /home/logs/mongodb/mongod.log -logappend -fork -port 27017
+6.启动Mongo shell
+命令：mongo 
+查看数据库：show dbs
+2、切换到指定的数据库进行操作
+use dtData
+3、显示当前数据库的所有集合（collections）
+show collections;
+db.blocks.count();
+db.contracts.count();
+
+db.blocks.remove({});
+db.contracts.remove({});
+
+查看mongo安装位置 whereis mongod
+查看修改配置文件 ： vi /etc/mongod.conf
+启动mongodb ：systemctl start mongod.service
+停止mongodb ：systemctl stop mongod.service
+重启：systemctl restart mongod.service
+
+查到mongodb的状态：systemctl status mongod.service
+
+设置开机启动
+systemctl enable mongod.service
+
+
+账号：root 端口：6588
+
+统一 ： hy70neAndBWK
+
+开放端口：20016 （内网），20017（内网），10021，10022，8096，8097
+
+-- PD p2p : 9798
+Fund  witnesses main
+{"privateKey":"cf655765dd79701589703783dcc5204decefc7e08c8cb9a817b744d5d9692ebb","address":"DTx35SENN36n6K56xKGgdiPhcRYFAHsv8d","hexAddress":"1efa336d58876ae3f64665a969b61cf95eb0472e45"}
+Dtclub
+{"privateKey":"e41677f164664c2332ed9d8bb784619dd971ec8b5293252ddb98b6d968628fd0","address":"DEQUtzhwjfqgcfyzWVt4nNJSxEcFxc8Hzn","hexAddress":"1e65a208dc8a3c41d9ad2320d2324c57342f6e138b"}
+Jockey
+{"privateKey":"67ec6a14489be86c01f1c68da596e123961397d0a2aa06c07298c2bdbb107b7d","address":"DP6WGpCC6mLwmKt9jzZJVDBsoPmmpPjPFv","hexAddress":"1ec4f4d400e2d9f63e939c3e34a3c8bdc715d788a5"}
+witnesses sub
+{"privateKey":"739f72e9ec983a95e0a1c6527e30cd0ad930c29cbd12023000f375e18e47eddd","address":"DNLxA8UAuSKtjYhAHGZPRRDCgUsNJVBkwg","hexAddress":"1ebcb82220f086999cf9428c0f28ed23899e10dc38"}
+witnesses sub2
+{"privateKey":"db55d72ccdc8aaa1d795aa714a2a10f90c971bf1ad849ed336d0033533b1143e","address":"DAiZ59HhVNx3xmb811G32SG27taAJjpbfL","hexAddress":"1e3d2c80fe1d30af42047346c7d056a66777630930"}
+
+
+sub 2
+http://154.206.61.198/fullApi/getnowblock
+
+PC钱包客户端下载:
+http://cdn.dtdapp.io/dt/DT_Wallet_Setup_1.0.0.rar
+
+浏览器：
+https://www.dtexplorer.io/
+
+bar coin 
+https://www.barc.io/    https://doc.barc.io/index.html
+bar-knox
+1q5t
+

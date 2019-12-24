@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <link rel="icon" href="./favicon.ico">
+  <title>DT Blockchain Explorer</title>
+  <link href="https://libs.cdnjs.net/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+  <!-- <link href="./css/sticky-footer-navbar.css.css" rel="stylesheet"> -->
+
+  <script src="https://libs.cdnjs.net/vue/2.6.10/vue.js"></script>
+  <script src="https://libs.cdnjs.net/axios/0.19.0-beta.1/axios.min.js"></script>
+
+</head>
+
+<body>
+  f
+  <p class="text-center">居中对齐导航:</p>
+    <ul class="nav justify-content-center">
+        <li class="nav-item">
+            <a class="nav-link" href="#">Link</a>
+          </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">Link</a>
+          </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">Link</a>
+          </li>
+        <li class="nav-item">
+            <a class="nav-link disabled" href="#">Disabled</a>
+          </li>
+      </ul>
+
+
+
+  <div id='root'>
+    <div v-if='show'>helle world</div>
+    <div v-else>bye world</div>
+    <button @click='handleClick'>toggle</button>
+  </div>
+  <script>
+    new Vue({
+      el: '#root',
+      data: {
+        show: true
+      },
+      methods: {
+        handleClick: function () {
+          this.show = !this.show;
+        }
+      }
+    })
+  </script>
+
+
+  <script src="https://libs.cdnjs.net/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://libs.cdnjs.net/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+
+</html>

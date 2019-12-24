@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <link rel="icon" href="./favicon.ico">
+  <title>DT Blockchain Explorer</title>
+  <link href="https://libs.cdnjs.net/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+  <link href="./css/sticky-footer-navbar.css.css" rel="stylesheet">
+
+  <script src="https://libs.cdnjs.net/vue/2.6.10/vue.js"></script>
+  <script src="https://libs.cdnjs.net/axios/0.19.0-beta.1/axios.min.js"></script>
+  <script src="https://libs.cdnjs.net/jquery/3.4.1/jquery.min.js"></script>
+  <script src="common.js"></script>
+</head>
+
+<body>
+    
+  <header>
+      <div class="headerpage"></div>
+      <script>$(".headerpage").load("header.html");</script>
+  </header>
+  
+  <main role="main" class="container">
+    
+    <h1 class="mt-5">Address</h1>
+    <div class="table-responsive">
+      <table class="table table-striped" id="app-address">
+        <thead>
+          <tr>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="info in addressInfo">
+            <td v-text="info[0]"></td>
+            <td v-text="info[1]"></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>Transactions</h2>
+    <nav>
+      <ul class="nav nav-tabs pagination" id="app-tranbtn">
+        <li style="font-size: 21px;" class="page-item" v-bind:class="{active:type==0}"><a v-bind:href="'address.html?address='+address +'&type=0&page=1'" class="page-link">Sent <span style="font-size: 14px;" v-text="sendCount"></span> </a></li>
+        <li style="font-size: 21px;" class="page-item" v-bind:class="{active:type==1}"><a v-bind:href="'address.html?address='+address +'&type=1&page=1'" class="page-link">Received <span style="font-size: 14px;" v-text="receiveCount"></span> </a></li>
+      </ul>
+    </nav>
+    <div class="table-responsive">
+      <table class="table table-striped" id="app-trans">
+        <thead>
+          <tr>
+              <th>Transaction ID</th>
+              <th>Date</th>
+              <th v-if='type==1'>Sender</th>
+              <th v-else>Recipient</th>
+              <th>Amount</th>
+              <th>Remark</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="tran in trans">
+              <td>
+                  <a v-text="tran.id" v-bind:href="'transaction.html?tid='+tran.id"></a>
+              </td>
+              <td v-text="tran.date"></td>
+              <td v-if='type==1'>
+                  <a v-text="tran.sender" v-bind:href="'address.html?address='+tran.sender + '&type=0&page=1'"></a>
+              </td>
+              <td v-else>
+                  <a v-text="tran.recipient" v-bind:href="'address.html?address='+tran.recipient + '&type=0&page=1'"></a>
+              </td>
+              <td v-text="tran.amount"></td>
+              <td v-text="tran.remark"></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    
+    
+    <nav aria-label="Page navigation" >
+        <ul class="pagination nav justify-content-center" id="app-page">
+            <li class="page-item" v-if="maxPage>0">
+                <a v-bind:href="'address.html?address='+address +'&type='+type+'&page='+ppage" aria-label="previous" class="page-link">
+                    <span>Prev</span>
+                </a>
+            </li>
+            
+            <li v-for="num in nums" class="page-item" v-bind:class="{active:num==page}">
+              <a v-bind:href="'address.html?address='+address +'&type='+type+'&page='+num" v-text="num" class="page-link"></a>
+            </li>
+
+            <li class="page-item" v-if="maxPage>0">
+                <a v-bind:href="'address.html?address='+address +'&type='+type+'&page='+npage" aria-label="Next" class="page-link">
+                    <span>Next</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <script src="address.js"></script>
+  </main>
+
+
+  <!-- <footer class="footer">
+    <div class="container">
+      <span class="text-muted">Place sticky footer content here.</span>
+    </div>
+  </footer> -->
+
+  <script src="https://libs.cdnjs.net/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+
+</html>
