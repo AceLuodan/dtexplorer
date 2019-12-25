@@ -1,7 +1,13 @@
-window.wurl = 'https://www.dtexplorer.io/fullApi/';
-window.surl = 'https://www.dtexplorer.io/solidityApi/';
-window.eurl = 'https://www.dtexplorer.io/extensionApi/';
-window.wapiurl = 'https://www.dtexplorer.io/walletApi/';
+//window.wurl = 'https://www.dtexplorer.io/fullApi/';
+//window.surl = 'https://www.dtexplorer.io/solidityApi/';
+//window.eurl = 'https://www.dtexplorer.io/extensionApi/';
+//window.wapiurl = 'https://www.dtexplorer.io/walletApi/';
+
+window.wurl = 'http://192.168.0.54/fullApi/';
+window.surl = 'http://192.168.0.54/solidityApi/';
+window.eurl = 'http://192.168.0.54/extensionApi/';
+window.wapiurl = 'http://192.168.0.54/walletApi/';
+
 
 window.getsTime = function (timestamp) {
     let d = new Date(timestamp);
