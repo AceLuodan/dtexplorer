@@ -5,10 +5,10 @@
 
 window.wurl = 'http://192.168.0.54/fullApi/';
 window.surl = 'http://192.168.0.54/solidityApi/';
-//window.eurl = 'http://192.168.0.54/extensionApi/';
-//window.wapiurl = 'http://192.168.0.54/walletApi/';
-window.eurl = 'http://192.168.0.54/walletApi/';
-window.wapiurl = 'http://192.168.0.54/extensionApi/';
+window.eurl = 'http://192.168.0.54/extensionApi/';
+window.wapiurl = 'http://192.168.0.54/walletApi/';
+//window.eurl = 'http://192.168.0.54/walletApi/';
+//window.wapiurl = 'http://192.168.0.54/extensionApi/';
 
 
 window.getsTime = function (timestamp) {
