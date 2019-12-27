@@ -1,11 +1,11 @@
 {
-    "name": "DTWallet",
-    "productName": "DT Wallet",
+    "name": "SVTWallet",
+    "productName": "SVT Wallet",
     "version": "1.0.0",
-    "description": "Manage your DT finances in one App!",
+    "description": "Manage your SVT finances in one App!",
     "main": "./main.prod.js",
     "author": {
-      "name": "DT Wallet Inc.",
+      "name": "SVT Wallet Inc.",
       "email": "info@dtexplorer.io",
       "url": "https://dtexplorer.io/"
     },

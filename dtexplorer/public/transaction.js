@@ -26,7 +26,7 @@ function showTransactionInfo(tid) {
             transfer.push(['Type', contract.type]);
             transfer.push(['Sender', do58Encode(contract.parameter.value.owner_address)]);
             transfer.push(['Recipient', do58Encode(contract.parameter.value.to_address)]);
-            transfer.push(['Amount', contract.parameter.value.amount/1000000+' DT']);
+            transfer.push(['Amount', contract.parameter.value.amount/1000000+' SVT']);
             transfer.push(['Timestamp', getsTime(dataInfo.blockTimeStamp)]);
             transfer.push(['Remark', contract.parameter.value.remark]);
 

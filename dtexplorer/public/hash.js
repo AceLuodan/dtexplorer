@@ -37,7 +37,7 @@ function showBlockInfo(hash) {
                     date: getsTime(oneTran.raw_data.timestamp),
                     sender: do58Encode(oneTran.raw_data.contract[0].parameter.value.owner_address),
                     recipient: do58Encode(oneTran.raw_data.contract[0].parameter.value.to_address),
-                    amount: oneTran.raw_data.contract[0].parameter.value.amount/1000000+' DT',
+                    amount: oneTran.raw_data.contract[0].parameter.value.amount/1000000+' SVT',
                     remark: oneTran.raw_data.contract[0].parameter.value.remark
                 }
                 trans.push(otran);

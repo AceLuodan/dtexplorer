@@ -89,10 +89,10 @@ function showAddressInfo(address) {
         let addressInfo = [];
         if(!adata.address){
             addressInfo.push(['Address', do58Encode(address)]);
-            addressInfo.push(['Total balance', '0 DT']);
+            addressInfo.push(['Total balance', '0 SVT']);
         }else{
             addressInfo.push(['Address', do58Encode(adata.address)]);
-            addressInfo.push(['Total balance', adata.balance / 1000000 + ' DT']);
+            addressInfo.push(['Total balance', adata.balance / 1000000 + ' SVT']);
         }
         
         var app4 = new Vue({
@@ -137,7 +137,7 @@ function showTransaction(address, type, page) {
                     date: getsTime(oneTran.timestamp || 0),
                     sender: oneTran.owner_address,
                     recipient: oneTran.to_address,
-                    amount: oneTran.amount / 1000000 + ' DT',
+                    amount: oneTran.amount / 1000000 + ' SVT',
                     remark: oneTran.remark,
                     block_id: oneTran.block_id
                 }
