@@ -1,28 +1,84 @@
-function showTranButton(address, type, page) {
-    axios({
-        method: 'get',
-        url: wapiurl + 'getTranCounts',
-        params: {
-            address: address
+
+
+async function getTransactions(iscount,address, type, page){    
+    let typeUrl = 'transfers';
+
+    let paramsTemp ;
+
+    if(iscount = 0){
+
+        if (0 == type ) {
+            paramsTemp ={
+                to: address,
+                start: page,
+                limit: 10,
+                sort : 'timeStamp'
+            };
+        }else{
+             paramsTemp ={
+                from: address,
+                start: page,
+                limit: 10,
+                sort : 'timeStamp'
+            };
         }
-    }).then((res) => {
-        var allCount = res.data.allCount;
-        var sendCount = res.data.sendCount;
-        var receiveCount = res.data.receiveCount;
-        var apptbtn = new Vue({
-            el: '#app-tranbtn',
-            data: {
-                address: address,
-                type: type,
-                allCount: allCount,
-                sendCount: sendCount,
-                receiveCount: receiveCount
-            }
-        })
-        showTranPage(address, type, page, allCount, sendCount, receiveCount);
+
+    }else{
+
+        if (0 == type ) {
+            paramsTemp ={
+                to: address
+            };
+        }else{
+             paramsTemp ={
+                from: address
+            };
+        }
+    }
+
+    
+
+    return await axios({
+                method: 'get',
+                url: wapiurl + typeUrl,
+                params: paramsTemp
+        }).then(res=>res.data);;
+}
+
+async function showTranButton(address, type, page) {
+
+    var allCount = 0;
+    var sendCount = 0;
+    var receiveCount = 0;
+
+    let transactionsFrom = await getTransactions(1,address, 0, page) ;
+    if(transactionsFrom.data){
+        receiveCount = transactionsFrom.data.length;
+    }
+
+    let transactionsTo = await getTransactions(1,address, 1, page) ;
+     if(transactionsTo.data){
+        sendCount = transactionsTo.data.length;
+    }
+
+    allCount = receiveCount+sendCount;
+
+    var apptbtn = new Vue({
+        el: '#app-tranbtn',
+        data: {
+            address: address,
+            type: type,
+            allCount: allCount,
+            sendCount: sendCount,
+            receiveCount: receiveCount
+        }
     });
+    
+    showTranPage(address, type, page, allCount, sendCount, receiveCount);
 
 }
+
+
 
 function showTranPage(address, type, page, allCount, sendCount, receiveCount){
     let maxApage = Math.ceil(allCount/10);
@@ -111,10 +167,6 @@ function showAddressInfo(address) {
 }
 
 function showTransaction(address, type, page) {
-    /*let typeUrl = 'getAddressReceive';
-    if (0 == type) {
-        typeUrl = 'getAddressSend';
-    }*/
 
     let typeUrl = 'transfers';
 
@@ -122,7 +174,7 @@ function showTransaction(address, type, page) {
 
     if (0 == type) {
         paramsTemp ={
-            to: address,
+            from: address,
             //offset: 10 * (page - 1),
             start: page,
             limit: 10,
@@ -130,7 +182,7 @@ function showTransaction(address, type, page) {
         };
     }else{
          paramsTemp ={
-            from: address,
+            to: address,
             start: page,
             limit: 10,
             sort : 'timeStamp'
@@ -142,7 +194,8 @@ function showTransaction(address, type, page) {
         url: wapiurl + typeUrl,
         params: paramsTemp
     }).then((res) => {
-        let transactions = res.data.trans;
+        //let transactions = res.data.trans;
+        let transactions = res.data.data;
         allCount = 0;
         sendCount = 20;
         receiveCount = 0;
@@ -151,13 +204,13 @@ function showTransaction(address, type, page) {
             for (let index = 0; index < transactions.length; index++) {
                 const oneTran = transactions[index];
                 let otran = {
-                    id: oneTran.txID,
-                    date: getsTime(oneTran.timestamp || 0),
-                    sender: oneTran.owner_address,
-                    recipient: oneTran.to_address,
-                    amount: oneTran.amount / 1000000 + ' SVT',
+                    id: oneTran.transactionId,
+                    date: getsTime(oneTran.timeStamp || 0),
+                    sender: oneTran.fromAddress,
+                    recipient: oneTran.toAddress,
+                    amount: oneTran.assetAmount / 1000000 + ' SVT',
                     remark: oneTran.remark,
-                    block_id: oneTran.block_id
+                    block_id: oneTran.blockHash
                 }
                 trans.push(otran);
             }
