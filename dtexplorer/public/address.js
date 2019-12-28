@@ -111,18 +111,36 @@ function showAddressInfo(address) {
 }
 
 function showTransaction(address, type, page) {
-    let typeUrl = 'getAddressReceive';
+    /*let typeUrl = 'getAddressReceive';
     if (0 == type) {
         typeUrl = 'getAddressSend';
+    }*/
+
+    let typeUrl = 'transfers';
+
+    let paramsTemp ;
+
+    if (0 == type) {
+        paramsTemp ={
+            to: address,
+            //offset: 10 * (page - 1),
+            start: page,
+            limit: 10,
+            sort : 'timeStamp'
+        };
+    }else{
+         paramsTemp ={
+            from: address,
+            start: page,
+            limit: 10,
+            sort : 'timeStamp'
+        };
     }
+    
     axios({
         method: 'get',
         url: wapiurl + typeUrl,
-        params: {
-            address: address,
-            offset: 10 * (page - 1),
-            limit: 10
-        }
+        params: paramsTemp
     }).then((res) => {
         let transactions = res.data.trans;
         allCount = 0;
